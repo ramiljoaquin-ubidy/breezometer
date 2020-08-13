@@ -49,17 +49,6 @@ export function fetchMetadata(apiTypeInput) {
         dispatch(receiveMetadata(apiTypeInput));
         let data = response.data;
         if (data.data.data_available && apiTypeInput == 'current-conditions') {
-          // debugger;
-          // let data = {
-          //   dateTime: data.data.datetime,
-          //   displayName: data.data.indexes.baqi.display_name || '',
-          //   aqi: data.data.indexes.baqi.aqi || '',
-          //   aqiDisplay: data.data.indexes.baqi.aqi_display || '',
-          //   color: data.data.indexes.baqi.color || '',
-          //   category: data.data.indexes.baqi.category || '',
-          //   dominantPollutant: data.data.indexes.baqi.dominant_pollutant || '',
-          // };
-          // debugger;
           dispatch(addMetadata(data.data));
         }
         if (
@@ -71,7 +60,6 @@ export function fetchMetadata(apiTypeInput) {
         }
       })
       .catch(function (error) {
-        // debugger;
         let errorInfo = error.response.data.error;
         dispatch(receiveCityError(errorInfo, apiTypeInput));
       });
