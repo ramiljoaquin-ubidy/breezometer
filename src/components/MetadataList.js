@@ -8,11 +8,20 @@ class MetadataList extends React.Component {
     if (this.props.metadataArray.length > 0) {
       // debugger;
       let metadataInfos = this.props.metadataArray[0].data;
-      metadataInfos.map((metaInfo) =>
+      if (Array.isArray(metadataInfos)) {
+        metadataInfos.map((metaInfo) =>
+          rows.push(
+            <MetadataRow key={metaInfo.indexes.baqi.aqi} metaInfo={metaInfo} />
+          )
+        );
+      } else {
         rows.push(
-          <MetadataRow key={metaInfo.indexes.baqi.aqi} metaInfo={metaInfo} />
-        )
-      );
+          <MetadataRow
+            key={metadataInfos.indexes.baqi.aqi}
+            metaInfo={metadataInfos}
+          />
+        );
+      }
     }
 
     return (

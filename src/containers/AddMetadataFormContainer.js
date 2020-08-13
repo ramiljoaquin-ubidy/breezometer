@@ -6,14 +6,21 @@ import { connect } from 'react-redux';
 //but instead, I use destructuring to "disarm" state
 
 const mapStateToProps = ({
-  appStatus: { errorMsg, errorCode, errorInfo, isFetching, success, userInput },
+  appStatus: {
+    errorMsg,
+    errorCode,
+    errorInfo,
+    isFetching,
+    success,
+    apiTypeInput,
+  },
 }) => ({
   errorMsg,
   errorCode,
   errorInfo,
   isFetching,
   success,
-  userInput,
+  apiTypeInput,
 });
 
 const mapDispatchToProps = {

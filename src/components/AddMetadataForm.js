@@ -3,16 +3,16 @@ import React from 'react';
 class AddMetadataForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { userInput: '' };
+    this.state = { apiTypeInput: '' };
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.fetchMetadata(this.state.userInput);
+    this.props.fetchMetadata(this.state.apiTypeInput);
   };
 
   handleChange = (event) => {
-    this.setState({ userInput: event.target.value });
+    this.setState({ apiTypeInput: event.target.value });
   };
 
   render() {
@@ -22,10 +22,10 @@ class AddMetadataForm extends React.Component {
       errorInfo,
       isFetching,
       success,
-      userInput,
+      apiTypeInput,
     } = this.props;
     if (!success && errorMsg && errorMsg.response) {
-      errorMsg = `${errorMsg.response.data.error.message}: ${userInput}`;
+      errorMsg = `${errorMsg.response.data.error.message}: ${apiTypeInput}`;
     }
     let loading = null;
     let errorLog = null;
@@ -35,7 +35,7 @@ class AddMetadataForm extends React.Component {
         <div>
           <h4 id="error">
             {' '}
-            ERROR ({errorCode}) {errorMsg}: {userInput}{' '}
+            ERROR ({errorCode}) {errorMsg}: {apiTypeInput}{' '}
           </h4>
           <h5> {errorInfo} </h5>
         </div>
@@ -59,7 +59,7 @@ class AddMetadataForm extends React.Component {
           />
           <input
             id="submitButton"
-            disabled={!this.state.userInput}
+            disabled={!this.state.apiTypeInput}
             type="submit"
             value="Submit!"
           />

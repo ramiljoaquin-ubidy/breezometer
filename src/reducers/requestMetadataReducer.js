@@ -12,14 +12,14 @@ const requestMetadataReducer = (state = {}, action) => {
       });
     case 'RECEIVE_CITY_ERROR':
       const { message, code, info } = action.payload.errorInfo;
-      const { userInput } = action.payload;
+      const { apiTypeInput } = action.payload;
       return Object.assign({}, state, {
         isFetching: false,
         success: false,
         errorMsg: message,
         errorCode: code,
         errorInfo: info,
-        userInput,
+        apiTypeInput,
       });
     default:
       return state;

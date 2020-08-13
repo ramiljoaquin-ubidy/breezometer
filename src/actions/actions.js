@@ -13,68 +13,67 @@ export const addMetadata = (data) => ({
   },
 });
 
-export const requestMetadata = (userInput) => ({
+export const requestMetadata = (apiTypeInput) => ({
   type: 'REQUEST_METADATA',
-  payload: userInput,
+  payload: apiTypeInput,
 });
 
-export const receiveMetadata = (userInput) => ({
+export const receiveMetadata = (apiTypeInput) => ({
   type: 'RECEIVE_METADATA_SUCCESS',
   payload: {
-    metadata: userInput,
+    metadata: apiTypeInput,
   },
 });
 
-export const receiveCityError = (errorInfo, userInput) => ({
+export const receiveCityError = (errorInfo, apiTypeInput) => ({
   type: 'RECEIVE_CITY_ERROR',
   payload: {
     errorInfo,
-    userInput,
+    apiTypeInput,
   },
 });
 
-export function fetchMetadata(userInput) {
+export function fetchMetadata(apiTypeInput) {
   return function (dispatch) {
     let url = 'current-conditions';
-    dispatch(requestMetadata(userInput));
-    if (userInput == 'current-conditions')
-      url = `https://api.breezometer.com/air-quality/v2/${userInput}?lat=14.5548&lon=121.0476&key=${KEY}&metadata=true&features=breezometer_aqi`;
-    if (userInput == 'forecast/hourly')
-      url = `https://api.breezometer.com/air-quality/v2/${userInput}?lat=14.5548&lon=121.0476&key=${KEY}&features=breezometer_aqi&hours=8`;
-    if (userInput == 'historical/hourly')
-      url = `https://api.breezometer.com/air-quality/v2/${userInput}?lat=14.5548&lon=121.0476&key=${KEY}&features=breezometer_aqi&hours=8`;
+    dispatch(requestMetadata(apiTypeInput));
+    if (apiTypeInput == 'current-conditions')
+      url = `https://api.breezometer.com/air-quality/v2/${apiTypeInput}?lat=14.5548&lon=121.0476&key=${KEY}&metadata=true&features=breezometer_aqi`;
+    if (apiTypeInput == 'forecast/hourly')
+      url = `https://api.breezometer.com/air-quality/v2/${apiTypeInput}?lat=14.5548&lon=121.0476&key=${KEY}&features=breezometer_aqi&hours=8`;
+    if (apiTypeInput == 'historical/hourly')
+      url = `https://api.breezometer.com/air-quality/v2/${apiTypeInput}?lat=14.5548&lon=121.0476&key=${KEY}&features=breezometer_aqi&hours=8`;
     axios
       .get(url)
       .then((response) => {
-        dispatch(receiveMetadata(userInput));
+        dispatch(receiveMetadata(apiTypeInput));
         let data = response.data;
-        console.log('console', JSON.stringify(data.data));
-        if (data.data.data_available) {
+        if (data.data.data_available && apiTypeInput == 'current-conditions') {
           // debugger;
-          let data = {
-            dateTime: data.data.datetime,
-            //...data.data.indexes.baqi,
-            displayName: data.data.indexes.baqi.display_name || '',
-            aqi: data.data.indexes.baqi.aqi || '',
-            aqiDisplay: data.data.indexes.baqi.aqi_display || '',
-            color: data.data.indexes.baqi.breezometer_color || '',
-            category: data.data.indexes.baqi.category || '',
-            dominantPollutant: data.data.indexes.baqi.dominant_pollutant || '',
-          };
-          // dispatch(addMetadata(metadataInfo));
+          // let data = {
+          //   dateTime: data.data.datetime,
+          //   displayName: data.data.indexes.baqi.display_name || '',
+          //   aqi: data.data.indexes.baqi.aqi || '',
+          //   aqiDisplay: data.data.indexes.baqi.aqi_display || '',
+          //   color: data.data.indexes.baqi.color || '',
+          //   category: data.data.indexes.baqi.category || '',
+          //   dominantPollutant: data.data.indexes.baqi.dominant_pollutant || '',
+          // };
+          // debugger;
+          dispatch(addMetadata(data.data));
         }
-        // debugger;
-        if (data.error == null) {
-          // debugger;
-          //let metadataInfo = { ...data.data };
-          // debugger;
+        if (
+          data.error == null &&
+          (apiTypeInput == 'forecast/hourly' ||
+            apiTypeInput == 'historical/hourly')
+        ) {
           dispatch(addMetadata(data.data));
         }
       })
       .catch(function (error) {
         // debugger;
         let errorInfo = error.response.data.error;
-        dispatch(receiveCityError(errorInfo, userInput));
+        dispatch(receiveCityError(errorInfo, apiTypeInput));
       });
   };
 }
