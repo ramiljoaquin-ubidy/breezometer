@@ -1,4 +1,8 @@
-import { fetchMetadata } from '../actions/actions';
+import {
+  fetchConditionsMetadata,
+  fetchForecastMetadata,
+  fetchHistoricalMetadata,
+} from '../actions/actions';
 import AddMetadataForm from '../components/AddMetadataForm';
 import { connect } from 'react-redux';
 
@@ -12,7 +16,7 @@ const mapStateToProps = ({
     errorInfo,
     isFetching,
     success,
-    apiTypeInput,
+    airQualityAPI,
   },
 }) => ({
   errorMsg,
@@ -20,11 +24,13 @@ const mapStateToProps = ({
   errorInfo,
   isFetching,
   success,
-  apiTypeInput,
+  airQualityAPI,
 });
 
 const mapDispatchToProps = {
-  fetchMetadata,
+  fetchConditionsMetadata,
+  fetchForecastMetadata,
+  fetchHistoricalMetadata,
 };
 
 const AddMetadataFormContainer = connect(

@@ -3,17 +3,20 @@ import React from 'react';
 class AddMetadataForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { apiTypeInput: '' };
+    this.state = { airQualityAPI: '' };
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.fetchMetadata(this.state.apiTypeInput);
-  };
+  handleConditionsSubmit(e) {
+    this.props.fetchConditionsMetadata();
+  }
 
-  handleChange = (event) => {
-    this.setState({ apiTypeInput: event.target.value });
-  };
+  handleForecastSubmit(e) {
+    this.props.fetchForecastMetadata();
+  }
+
+  handleHistoricalSubmit(e) {
+    this.props.fetchHistoricalMetadata();
+  }
 
   render() {
     let {
@@ -22,10 +25,10 @@ class AddMetadataForm extends React.Component {
       errorInfo,
       isFetching,
       success,
-      apiTypeInput,
+      airQualityAPI,
     } = this.props;
     if (!success && errorMsg && errorMsg.response) {
-      errorMsg = `${errorMsg.response.data.error.message}: ${apiTypeInput}`;
+      errorMsg = `${errorMsg.response.data.error.message}: ${airQualityAPI}`;
     }
     let loading = null;
     let errorLog = null;
@@ -35,7 +38,7 @@ class AddMetadataForm extends React.Component {
         <div>
           <h4 id="error">
             {' '}
-            ERROR ({errorCode}) {errorMsg}: {apiTypeInput}{' '}
+            ERROR ({errorCode}) {errorMsg}: {airQualityAPI}{' '}
           </h4>
           <h5> {errorInfo} </h5>
         </div>
@@ -43,25 +46,30 @@ class AddMetadataForm extends React.Component {
     }
     return (
       <div>
-        <h4>Enter the Air Quality API:</h4>
         <ul>
           <li>current-conditions</li>
           <li>forecast/hourly</li>
           <li>historical/hourly</li>
           <li></li>
         </ul>
-        <form id="metadataForm" onSubmit={this.handleSubmit.bind(this)}>
+        <form>
           <input
-            id="textInput"
-            type="text"
-            name="metadata"
-            onChange={this.handleChange.bind(this)}
+            id="submitButtonConditions"
+            type="button"
+            onClick={() => this.handleConditionsSubmit()}
+            value="Conditions"
           />
           <input
-            id="submitButton"
-            disabled={!this.state.apiTypeInput}
-            type="submit"
-            value="Submit!"
+            id="submitButtonForecast"
+            type="button"
+            onClick={() => this.handleForecastSubmit()}
+            value="Forecast"
+          />
+          <input
+            id="submitButtonHistorical"
+            type="button"
+            onClick={() => this.handleHistoricalSubmit()}
+            value="Historical"
           />
           {loading}
           {errorLog}

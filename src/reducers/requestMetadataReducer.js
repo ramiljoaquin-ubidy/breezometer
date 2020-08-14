@@ -10,16 +10,16 @@ const requestMetadataReducer = (state = {}, action) => {
         success: true,
         errorMsg: '',
       });
-    case 'RECEIVE_CITY_ERROR':
+    case 'RECEIVE_AIRQUALITY_ERROR':
       const { message, code, info } = action.payload.errorInfo;
-      const { apiTypeInput } = action.payload;
+      const { airQualityAPI } = action.payload;
       return Object.assign({}, state, {
         isFetching: false,
         success: false,
         errorMsg: message,
         errorCode: code,
         errorInfo: info,
-        apiTypeInput,
+        airQualityAPI,
       });
     default:
       return state;
