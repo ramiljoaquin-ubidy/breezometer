@@ -2,7 +2,7 @@ import {
   fetchConditionsMetadata,
   fetchForecastMetadata,
   fetchHistoricalMetadata,
-} from '../actions/actions';
+} from '../actions';
 import AddMetadataForm from '../components/AddMetadataForm';
 import { connect } from 'react-redux';
 
