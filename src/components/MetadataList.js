@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MetadataRow from '../components/MetadataRow';
+import Metadata from '../components/Metadata';
 
 class MetadataList extends React.Component {
   render() {
@@ -11,12 +11,12 @@ class MetadataList extends React.Component {
       if (Array.isArray(metadataInfos)) {
         metadataInfos.map((metaInfo) =>
           rows.push(
-            <MetadataRow key={metaInfo.indexes.baqi.aqi} metaInfo={metaInfo} />
+            <Metadata key={metaInfo.indexes.baqi.aqi} metaInfo={metaInfo} />
           )
         );
       } else {
         rows.push(
-          <MetadataRow
+          <Metadata
             key={metadataInfos.indexes.baqi.aqi}
             metaInfo={metadataInfos}
           />

@@ -1,7 +1,7 @@
 import React from 'react';
-function MetadataRow(props) {
+function Metadata(props) {
   // debugger;
-  console.log('props', JSON.stringify(props));
+  // console.log('props', JSON.stringify(props));
   const {
     displayName,
     aqi,
@@ -20,4 +20,4 @@ function MetadataRow(props) {
   );
 }
 
-export default MetadataRow;
+export default Metadata;
