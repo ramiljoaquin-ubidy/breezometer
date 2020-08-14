@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { loadState } from '../persistence/localStorage';
 
 export const ADD_METADATA = 'ADD_METADATA';
 export const REQUEST_METADATA = 'REQUEST_METADATA';
@@ -7,8 +6,6 @@ export const RECEIVE_METADATA_SUCCESS = 'RECEIVE_METADATA_SUCCESS';
 export const RECEIVE_AIRQUALITY_ERROR = 'RECEIVE_AIRQUALITY_ERROR';
 
 const KEY = '6fcde45e6983467587219d5c9e000145';
-
-const persistedState = loadState();
 
 export const addMetadata = (data) => ({
   type: ADD_METADATA,
