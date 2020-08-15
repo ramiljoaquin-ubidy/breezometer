@@ -41,11 +41,11 @@ function AddMetadataForm(props) {
 
   return (
     <div>
+      <h1>Air API</h1>
       <ul>
         <li>current-conditions</li>
         <li>forecast/hourly</li>
         <li>historical/hourly</li>
-        <li></li>
       </ul>
       <form>
         <input

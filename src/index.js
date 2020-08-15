@@ -16,9 +16,14 @@ const preloadedState = loadState();
 const store = createStore(
   rootReducer,
   preloadedState,
-  compose(applyMiddleware(thunk, createLogger()))
+  compose(applyMiddleware(thunk, createLogger()), DevTools.instrument())
 );
-
+if (module.hot) {
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept('./reducers/rootReducer.js', () => {
+    store.replaceReducer(rootReducer);
+  });
+}
 store.subscribe(() => {
   saveState(store.getState());
 });
