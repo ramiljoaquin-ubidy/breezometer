@@ -4,8 +4,10 @@ import Metadata from '../components/Metadata';
 
 function MetadataList(props) {
   const rows = [];
-  if (props.metadataArray.length > 0) {
-    let metadataInfos = props.metadataArray[0].data;
+  let metaArr = props.metadataArray;
+  if (metaArr.length > 0) {
+    metaArr = metaArr.slice(-1);
+    let metadataInfos = metaArr[0].data;
     if (Array.isArray(metadataInfos)) {
       metadataInfos.map((metaInfo) =>
         rows.push(
