@@ -88,7 +88,7 @@ export function fetchForecastMetadata() {
     dispatch(addRoute(routes));
     let url = '';
     routes.map((route) => {
-      url = `https://api.breezometer.com/air-quality/v2/${airQualityAPI}?lat=${route.lat}&lon=${route.lng}&key=${KEY}&features=breezometer_aqi&hours=8`;
+      url = `https://api.breezometer.com/air-quality/v2/${airQualityAPI}?lat=${route.lat}&lon=${route.lng}&key=${KEY}&features=breezometer_aqi&hours=4`;
       axios
         .get(url)
         .then((response) => {
@@ -113,7 +113,7 @@ export function fetchHistoricalMetadata() {
     dispatch(addRoute(routes));
     let url = '';
     routes.map((route) => {
-      url = `https://api.breezometer.com/air-quality/v2/${airQualityAPI}?lat=${route.lat}&lon=${route.lng}&key=${KEY}&features=breezometer_aqi&hours=8`;
+      url = `https://api.breezometer.com/air-quality/v2/${airQualityAPI}?lat=${route.lat}&lon=${route.lng}&key=${KEY}&features=breezometer_aqi&hours=3`;
       axios
         .get(url)
         .then((response) => {
