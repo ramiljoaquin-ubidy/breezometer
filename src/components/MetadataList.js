@@ -9,10 +9,8 @@ function MetadataList(props) {
     metaArr = metaArr.slice(-1);
     let metadataInfos = metaArr[0].data;
     if (Array.isArray(metadataInfos)) {
-      metadataInfos.map((metaInfo) =>
-        rows.push(
-          <Metadata key={metaInfo.indexes.baqi.aqi} metaInfo={metaInfo} />
-        )
+      metadataInfos.map((metaInfo, index) =>
+        rows.push(<Metadata key={index} metaInfo={metaInfo} />)
       );
       //debugger;
     } else {
