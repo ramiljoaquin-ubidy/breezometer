@@ -1,22 +1,10 @@
-{
-  "routes": [
-    {
-      "bounds": {
-        "northeast": {
-          "lat": 37.8079996,
-          "lng": -122.4074334
-        },
-        "southwest": {
-          "lat": 37.7881005,
-          "lng": -122.4203553
-        }
-      },
-      "copyrights": "Map data ©2015 Google",
-      "fare": {
-        "currency": "USD",
-        "value": 6,
-        "text": "$6.00"
-      }
-    }
-  ]
-}
+[
+  {
+    "lat": 37.8079996,
+    "lng": -122.4074334
+  },
+  {
+    "lat": 37.7881005,
+    "lng": -122.4203553
+  }
+]
