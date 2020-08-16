@@ -1,5 +1,5 @@
 import React from 'react';
-function Metadata(props) {
+const Metadata = (props) => {
   // debugger;
   // console.log('props', JSON.stringify(props));
   const {
@@ -18,6 +18,6 @@ function Metadata(props) {
       <td bgcolor={color}>{dominant_pollutant}</td>
     </tr>
   );
-}
+};
 
 export default Metadata;

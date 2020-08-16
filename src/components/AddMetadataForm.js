@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AddMetadataForm(props) {
+const AddMetadataForm = (props) => {
   const handleConditionsSubmit = (e) => {
     props.fetchConditionsMetadata();
   };
@@ -71,6 +71,6 @@ function AddMetadataForm(props) {
       </form>
     </div>
   );
-}
+};
 
 export default AddMetadataForm;

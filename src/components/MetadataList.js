@@ -2,7 +2,7 @@ import React from 'react';
 
 import Metadata from '../components/Metadata';
 
-function MetadataList(props) {
+const MetadataList = (props) => {
   const rows = [];
   let metaArr = props.metadataArray;
   if (metaArr.length > 0) {
@@ -40,6 +40,6 @@ function MetadataList(props) {
       </table>
     </div>
   );
-}
+};
 
 export default MetadataList;
