@@ -64,20 +64,6 @@ export function fetchConditionsMetadata() {
           dispatch(receiveAirQualityError(errorInfo, airQualityAPI));
         });
     });
-    //const url = `https://api.breezometer.com/air-quality/v2/${airQualityAPI}?lat=14.5548&lon=121.0476&key=${KEY}&metadata=true&features=breezometer_aqi`;
-    // axios
-    //   .get(url)
-    //   .then((response) => {
-    //     dispatch(receiveMetadata(airQualityAPI));
-    //     let data = response.data;
-    //     if (data.data.data_available && airQualityAPI == 'current-conditions') {
-    //       dispatch(addMetadata(data.data));
-    //     }
-    //   })
-    //   .catch(function (error) {
-    //     let errorInfo = error.response.data.error;
-    //     dispatch(receiveAirQualityError(errorInfo, airQualityAPI));
-    //   });
   };
 }
 
